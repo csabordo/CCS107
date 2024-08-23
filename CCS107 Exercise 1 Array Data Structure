@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class EXERCISE1 {
 
 	public static void main(String[] args) {
-		
+		//Connects the Java Methods
 		String strInput = method_uInput();
 		System.out.println(strInput);
 		String uInput = strInput.toLowerCase();
@@ -16,8 +16,10 @@ public class EXERCISE1 {
 	
 	static String method_uInput() {
 		
+		// Set Ups the User Input Portion of the Code
 		Scanner scanInput = new Scanner(System.in);
 		String strInput = null;
+		// Used For Loop and If Statements for Limiting Max Characters  
 			for ( int i = 1; i <= 20;) {
 			System.out.println("Enter a String: (max: 20 letters)");
 			strInput = scanInput.nextLine();
@@ -28,6 +30,7 @@ public class EXERCISE1 {
 						return strInput;
 					}	
 				}
+			
 		scanInput.close();
 		return strInput;
 		
@@ -35,61 +38,42 @@ public class EXERCISE1 {
 	
 	static int[] method_countVC(String uInput) {
 		
+		//Initialization of Needed DataTypes
 		int count_Vowel = 0;
 		int count_Consonants = 0;
-		int count_Number = 0;
-		int count_Special = 0;
-		int[] arrCount = new int[4];
+		int[] arrCount = new int[2];
 		char[] arrVowel = {'a', 'e', 'i', 'o', 'u'};
 		char[] arrConsonants = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
 		
-	
-		
+			//Main Body of Vowel and Consonant Counting Program
+			//First For Loop to Sort Through the Characters of uInput String
 			for(int i = 0; i < uInput.length(); i++) {
-				for(int s = 0; s < uInput.length(); s++) {
-					if(!Character.isLetterOrDigit(uInput.charAt(i))) {
-						count_Special ++;
-						arrCount[3] = count_Special;
-						break;
-					}
-				}
-				for(int e = 0; e < uInput.length(); e++) {
-					if(Character.isDigit(uInput.charAt(i))) {
-						count_Number ++;
-						arrCount[2] = count_Number;
-						break;
-					}
-				}
+				//Nested Loops to Compare the Vowels and Consonants to the Characters
 				for(int j = 0; j < arrVowel.length; j++) {
 					if(uInput.charAt(i) == arrVowel[j]) {
 						count_Vowel ++;
 						arrCount[0] = count_Vowel;
 						break;
 					}
-					
-				}
-							
+				}	
 				for(int k = 0; k < arrConsonants.length; k++) {
 					if(uInput.charAt(i) == arrConsonants[k]) {
 						count_Consonants ++;
 						arrCount[1] = count_Consonants;
 						break;
-						}
 					}
-				
+				}
 			}
 		return arrCount;
 	}
 
-	
 	static void method_Output(int[] arrCount, String uInput){
 		
+		//Outputs the Results of the Counting 
 		System.out.println("--------------------------------------------------------" + '\n'
 				+ "Total Characters of The String: " + uInput.length() + '\n'
 				+"Total Vowels Counted: " + arrCount[0] + '\n'
-				+ "Total Consanants Counted: " + arrCount[1] + '\n'
-				+ "Total Numbers Counted: " + arrCount[2] + '\n'
-				+ "Total Special Characters Counted: " + arrCount[3]);
+				+ "Total Consanants Counted: " + arrCount[1]);
 		
 		return;
 		
