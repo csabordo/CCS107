@@ -1,0 +1,98 @@
+package EXERCISE;
+
+import java.util.Scanner;
+
+public class EXERCISE1 {
+
+	public static void main(String[] args) {
+		
+		String strInput = method_uInput();
+		System.out.println(strInput);
+		String uInput = strInput.toLowerCase();
+		int[] arrCount = method_countVC(uInput);
+		method_Output(arrCount, uInput);
+		
+}
+	
+	static String method_uInput() {
+		
+		Scanner scanInput = new Scanner(System.in);
+		String strInput = null;
+			for ( int i = 1; i <= 20;) {
+			System.out.println("Enter a String: (max: 20 letters)");
+			strInput = scanInput.nextLine();
+			
+				if(strInput.length()>20) {
+					System.out.println("Error (Exceeded Max Amount of Characters)");
+					} else {
+						return strInput;
+					}	
+				}
+		scanInput.close();
+		return strInput;
+		
+}
+	
+	static int[] method_countVC(String uInput) {
+		
+		int count_Vowel = 0;
+		int count_Consonants = 0;
+		int count_Number = 0;
+		int count_Special = 0;
+		int[] arrCount = new int[4];
+		char[] arrVowel = {'a', 'e', 'i', 'o', 'u'};
+		char[] arrConsonants = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
+		
+	
+		
+			for(int i = 0; i < uInput.length(); i++) {
+				for(int s = 0; s < uInput.length(); s++) {
+					if(!Character.isLetterOrDigit(uInput.charAt(i))) {
+						count_Special ++;
+						arrCount[3] = count_Special;
+						break;
+					}
+				}
+				for(int e = 0; e < uInput.length(); e++) {
+					if(Character.isDigit(uInput.charAt(i))) {
+						count_Number ++;
+						arrCount[2] = count_Number;
+						break;
+					}
+				}
+				for(int j = 0; j < arrVowel.length; j++) {
+					if(uInput.charAt(i) == arrVowel[j]) {
+						count_Vowel ++;
+						arrCount[0] = count_Vowel;
+						break;
+					}
+					
+				}
+							
+				for(int k = 0; k < arrConsonants.length; k++) {
+					if(uInput.charAt(i) == arrConsonants[k]) {
+						count_Consonants ++;
+						arrCount[1] = count_Consonants;
+						break;
+						}
+					}
+				
+			}
+		return arrCount;
+	}
+
+	
+	static void method_Output(int[] arrCount, String uInput){
+		
+		System.out.println("--------------------------------------------------------" + '\n'
+				+ "Total Characters of The String: " + uInput.length() + '\n'
+				+"Total Vowels Counted: " + arrCount[0] + '\n'
+				+ "Total Consanants Counted: " + arrCount[1] + '\n'
+				+ "Total Numbers Counted: " + arrCount[2] + '\n'
+				+ "Total Special Characters Counted: " + arrCount[3]);
+		
+		return;
+		
+	}
+}
+	
